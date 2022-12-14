@@ -7,7 +7,7 @@ const products = new List()
 
 users.fetchAll("https://api.escuelajs.co/api/v1/users")
 products.fetchAll("https://api.escuelajs.co/api/v1/products")
-
+console.log(users)
 console.log(users.sortList("desc")) //Expect to see users array in new order of id decreasing
 
 /** find user by email.
@@ -19,7 +19,7 @@ const findUserByEmail = (email) => {
 const foundUser = findUserByEmail("john@mail.com")
 console.log(foundUser) //expect to see user with email "john@mail.com" in the console
 
-/** Find all products with titles matched the search, case insentitive. 
+/** Find all products with titles matched the search, case insentitive.
  * Take a parameter of type string.
  * Return an array
  */
