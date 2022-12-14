@@ -1,4 +1,4 @@
-import { Transaction } from "../types/transaction";
+import { Transaction } from "./transaction";
 import { v4 as uuid } from "uuid"
 
 export class Customer {
