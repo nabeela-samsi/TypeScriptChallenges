@@ -79,7 +79,7 @@ const customer3 = new Customer("John")
 
 arizonaBank.addBranch(westBranch)
 arizonaBank.addBranch(sunBranch)
-arizonaBank.addBranch(westBranch) 
+arizonaBank.addBranch(westBranch)
 
 arizonaBank.findBranchByName("bank")
 arizonaBank.findBranchByName("sun")
