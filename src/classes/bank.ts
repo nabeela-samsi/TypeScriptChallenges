@@ -11,11 +11,11 @@ export class Bank {
         this.branches = []
     }
 
-    addBranch = (branch: Branch): boolean => {
-        if(this.branches.includes(branch)){
+    addBranch = (branchName: Branch): boolean => {
+        if(this.branches.includes(branchName)){
             return false
         } else{
-            this.branches = [...this.branches,branch]
+            this.branches = [...this.branches,branchName]
             return true
         }
     }
@@ -33,7 +33,7 @@ export class Bank {
         this.branches.map((branch: Branch) => {
             let name = branch.getName
             if(name.toLowerCase().includes(branchName) || name === branchName) {
-                result = (result) ? result + ',' + name : name
+                result = (result) ? result + ', ' + name : name
                 return result
             }
          })
@@ -44,9 +44,9 @@ export class Bank {
         return this.branches.includes(branchName)
     }
 
-    listCustomers = (branchName: Branch, checkCustomer: boolean): boolean | CustomerList []  => {
+    listCustomers = (branchName: Branch, getTransactionInfo: boolean): boolean | CustomerList[]  => {
         if(branchName) {
-            if(!checkCustomer){
+            if(!getTransactionInfo){
                 return true
             } else{
               return branchName.getCustomers.map(data => {

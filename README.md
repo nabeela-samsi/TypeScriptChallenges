@@ -1,105 +1,160 @@
 # TypeScript Assignment
 
-- Complete two challenges: banking application & fetching e-commerce data.
-- Check the scripts in `package.json` to run the suitable command for each challenge
+- Worked on building bank application and fixing the ecommerce application. This is done using TypeScript
+- Check the scripts in `package.json` to run the suitable command to get the expected output
 
-## Create a simple banking application
+## Tech stack
 
-Implement the following classes, interface, and codes (you can decide which file to put each type, but do not write all the types in `index.ts` or `bank.ts`). All the properties must be kept private, while you can make the methods as public
+- TypeScript
+
+## Following is the folder structure.
+.
+├── package.json
+├── package-lock.json
+├── README.md
+├── src
+│   ├── bank.ts
+│   ├── classes
+│   │   ├── bank.ts
+│   │   ├── branch.ts
+│   │   └── customer.ts
+│   ├── index.ts
+│   └── types
+│       ├── common.ts
+│       ├── ecommerce.ts
+│       ├── product.ts
+│       └── user.ts
+└── tsconfig.json
+
+- index.ts file used to perform some basic operations on ecommerce application
+- bank.ts file used to perform some basic operations on bank application
+- types folder consists of required interfaces for both the application
+- classes folder consists of required class for bank application
+
+## Bank application how it works?
 
 1. Class Bank
 
-    - It has two properties: `name` (string), `branches` (array of type Branch[])
+    - It has one parameter:
+        - name and type is a string
 
-    - A constructor that takes an argumment name (string). It initialises name and instantiates branches as empty array.
+    - The class bank have 5 methods they are listed below:
 
-    - And five methods:
+        - `addBranch()`
+            - This function is used to create new bank branch information such that branch name should be unique.
+            - It requires one parameter branch name and type is class of Branch type
+            - Once the branch is added successfully it will return true, otherwise it will be false which indicates something went wrong or the branch name is not unique.
 
-    - `addBranch()`, has one parameter of type `Branch` and returns a boolean. This function will add branch into array `branches`. It returns true if the branch was added successfully or false otherwise. Each branch is supposed to be added once only.
+        - `addCustomer()`
+            - This function is used to create new customer within a specific branch of the bank information such that customer name should be unique.
+            - It requires two parameters
+                - branch name and type is class of Branch type
+                - customer name and type is class of Customer type
+            - Once the customer is added successfully it will return true, otherwise it will be false which indicates something went wrong or the customer name is not unique.
 
-    - `addCustomer()`, has 2 parameters: branch and customer and returns a boolean. It returns true if the customer is added successfully to the branch of the bank or false otherwise. Each customer can be added only once to a branch.
+        - `addCustomerTransaction()`
+            - This function is used to create customers transaction information of an existing customer within a specific branch of the bank.
+            - It requires three parameters
+                - branch name and type is class of Branch type
+                - customer id and type is a string.
+                -  amount of transaction and type should be positive number.
+            - If negative transaction amount is passed it return false and no information of the transaction process is added.
+            - Once the customer transaction information is added successfully it will return true.
 
-    - `addCustomerTransaction()`, has three parameters: branch, customer id, amount of transaction and returns a boolean. It returns true if the customers transaction is added successfully or false otherwise.
+        - `findBranchByName()`
+            - This function is used to search branch names of the specific bank.
+            - It requires one parameters
+                - branch name and type is string
+            - If provided branchname is substring or exact string is passed it will return the list of matched branches, otherwise returns null
 
-    - `findBranchByName()`, has one parameter of type string (branch's name) and returns list of matched branches or null otherwise.
+        - `checkBranch()`
+            - This function is used to check the bank is located in specific branch or no.
+            - It requires one parameters
+                - branch name and type is class of Branch type
+            - If bank is located at specific branch then it returns true, otherwise false.
 
-    - `checkBranch()`, has one parameter of type Branch and returns true if branch belongs to bank or false otherwise.
-
-    - `listCustomers()`, has two parameters, branch and boolean and returns a boolean. Return true if the branch exists or false otherwise. This method prints out a list of customers with transaction details if second parameter is true.
+        - `listCustomers()`
+             - This function is used either used to check branch Or to print out the customer details along with transaction history.
+            - It requires two parameters
+                - branch name and type is class of Branch type
+                - getTransactionInfo and type is boolean.
+            - If getTransaction is passed as false, then it will return true if branch exists otherwise false.
+            - If getTransaction is passed as true then if branch exists it will prints out the customer details along with transaction history. Otherwise it will just resturn false if no branch doesnt exists
 
 2. Class Branch
 
-    - It has two properties, a string called `name` and an array called `customers`. Array `customers` should hold objects of type Customer.
+    - It has one property:
+        - name and type is a string
 
-    - A constructor that takes a string (name of the branch). It initialises name and instantiates customers as an emty array.
+    - The class branch have 5 methods they are listed below:
 
-    - And 5 methods, they are (their functions are in their names):
+        - `getName()`
+            - no parameter is needed
+            - It is a getter used to get the branch name.
+            - While calling the function no need to pass the any paranthesis.
 
-        - `getName()`, getter for name.
+        - `getCustomers()`
+            - no parameter is needed
+            - It is a getter used to get the customer information.
+            - While calling the function no need to pass the any paranthesis.
 
-        - `getCustomers()`, getter for customers.
+        - `addCustomer()`
+            - This function is used to create new customer. This is called from Bank class.
+            - It requires one parameter
+                - customer name and type is class of Customer type
+            - Once the customer is added successfully it will return true, otherwise it will be false which indicates something went wrong or the customer name is not unique.
 
-        - `addCustomer()`, has a parameter of type Customer and returns a boolean. Returns true if the customer was added successfully or false otherwise (each customer should be added once only).
+        - `addCustomerTransaction()`
+            - This function is used to create customers transaction information of an existing customer. This is called from Bank class.
+            - It requires two parameters
+                - customer id and type is a string.
+                - amount of transaction and type should be positive number.
+            - If negative transaction amount is passed it return false and no information of the transaction process is added.
+            - Once the customer transaction information is added successfully it will return true.
 
-        - `addCustomerTransaction()`, has a parameter of type string (id of customer), a number (for transaction) and returns a boolean. Returns true if the customers transaction is added successfully or false otherwise.
-
-        - `findCustomer()`, has one parameter of type string (`id` of customer) and returns a customer. Return the customer if they exist, null otherwise.
+        - `findCustomer()`
+            - This function is used to search customer using id within specific branch.
+            - It requires one parameters
+                - customer id and type is string
+            - If customer is found using ID then it returns the customer information, otherwise it will return null
 
 3. Class Customer
 
-    - It has 3 properties, string `name`, string `id`, and an array that holds objects of type Transaction called `transactions`.
+    - It has one property:
+        - name and type is a string
 
-    - A constructor that takes only a parameter of type string (name of customer). It initialises name and instantiates transactions as empty array. `id` should be initialized to be an unique string.
+    - The class customer have 5 methods they are listed below:
 
-    - And 5 methods:
+        - `getName()`
+            - no parameter is needed
+            - It is a getter used to get the customer name.
+            - While calling the function no need to pass the any paranthesis.
 
-        - `getName()`, getter for name.
+        - `getId()`
+            - no parameter is needed
+            - It is a getter used to get the customer ID.
+            - While calling the function no need to pass the any paranthesis.
 
-        - `getId()`, getter for id.
+        - `getTransactions()`
+            - no parameter is needed
+            - It is a getter used to get the transaction information.
+            - While calling the function no need to pass the any paranthesis.
 
-        - `getTransactions()`, getter for transactions.
+        - `getBalance()`
+            - This function is used to get current bank balance of specific customer
 
-        - `getBalance()`, return the current balance from the transactions.
+        - `addTransaction()`
+            - This function is used to create transaction information for a specific customer. This is called from Branch class.
+            - It requires one parameter
+                - amount and type is number
+            - If negative transaction amount is passed it return false and no information of the transaction process is added.
+            - Once the customer transaction information is added successfully it will return true.
 
-        - `addTransaction()`, has one parameter of type number and return true if transaction is added sucessfully. You need to make sure that balance cannot be negative. This function should add the successful transaction into transactions array.
+## E-commerce application how it works?
 
-4. Interface Transaction
-
-    - It has 2 properties, a number `amount`, and a Date called `date`. `date` refers to the time that transaction has been created.
-
-Run the following codes in `bank.ts`and share your results and findings in the Slack channel
-
-```
-const arizonaBank = new Bank("Arizona")
-const westBranch = new Branch("West Branch")
-const sunBranch = new Branch("Sun Branch")
-const customer1 = new Customer("John")
-const customer2 = new Customer("Anna")
-const customer3 = new Customer("John")
-
-arizonaBank.addBranch(westBranch)
-arizonaBank.addBranch(sunBranch)
-arizonaBank.addBranch(westBranch)
-
-arizonaBank.findBranchByName("bank")
-arizonaBank.findBranchByName("sun")
-
-arizonaBank.addCustomer(westBranch, customer1)
-arizonaBank.addCustomer(westBranch, customer3)
-arizonaBank.addCustomer(sunBranch, customer1)
-arizonaBank.addCustomer(sunBranch, customer2)
-
-arizonaBank.addCustomerTransaction(westBranch, customer1.getId, 3000)
-arizonaBank.addCustomerTransaction(westBranch, customer1.getId, 2000)
-arizonaBank.addCustomerTransaction(westBranch, customer2.getId, 3000)
-
-customer1.addTransactions(-1000)
-console.log(customer1.getBalance())
-console.log(arizonaBank.listCustomers(westBranch, true))
-console.log(arizonaBank.listCustomers(sunBranch,true))
-```
-
-## Fetch E-commerce data
-
-Explore the codes in `index.ts` and folder `types`. Complete the codes or fix bugs
-if needed to producce the expected result according to the codes in `index.ts`.
+- This is pretty staright forward, here we are performing following operations:
+    - Fetching users and products data using specific API's.
+    - Sorting data with respect to ID, the sorting order will be either ascending or descending. The order is selected as per users preference
+    - Fetching specific user data by passing email address
+    - Fetching specific product data by passing substring of title
+    - Inserting user data, such that the id should be unique

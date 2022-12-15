@@ -29,7 +29,6 @@ export class Branch {
     addCustomerTransaction = (customerId: string, amount: number): boolean => {
         const customerData: null | Customer = this.findCustomer(customerId)
         return (customerData === null) ? false : customerData.addTransactions(amount)
-
     }
 
     findCustomer = (customerId: string): Customer | null => {
