@@ -8,7 +8,7 @@
 - TypeScript
 
 ## Following is the folder structure.
-.
+```bash
 ├── package.json
 ├── package-lock.json
 ├── README.md
@@ -25,6 +25,7 @@
 │       ├── product.ts
 │       └── user.ts
 └── tsconfig.json
+```
 
 - index.ts file used to perform some basic operations on ecommerce application
 - bank.ts file used to perform some basic operations on bank application
