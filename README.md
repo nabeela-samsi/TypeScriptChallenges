@@ -36,7 +36,7 @@
 
 1. Class Bank
 
-    - It has one parameter:
+    - It has one property:
         - name and type is a string
 
     - The class bank have 5 methods they are listed below:
