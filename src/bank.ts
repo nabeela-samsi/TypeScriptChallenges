@@ -4,6 +4,7 @@ import { Customer } from "./components/customer"
 
 
 const arizonaBank = new Bank("Arizona")
+const stateBank = new Bank("State")
 const westBranch = new Branch("West Branch")
 const sunBranch = new Branch("Sun Branch")
 const customer1 = new Customer("John")
@@ -30,5 +31,8 @@ console.log(customer1.addTransactions(-1000))
 console.log(customer1.getBalance())
 console.log(arizonaBank.listCustomers(westBranch, true))
 console.log(arizonaBank.listCustomers(sunBranch,true))
+
+console.log(arizonaBank.checkBranch(westBranch))
+console.log(stateBank.checkBranch(westBranch))
 
 console.log(westBranch.findCustomer(customer1.getId))
