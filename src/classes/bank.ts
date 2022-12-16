@@ -45,7 +45,7 @@ export class Bank {
     }
 
     listCustomers = (branchName: Branch, getTransactionInfo: boolean): boolean | CustomerList[]  => {
-        if(branchName) {
+        if(this.checkBranch(branchName)) {
             if(!getTransactionInfo){
                 return true
             } else{

@@ -2,7 +2,6 @@ import { Bank } from "./classes/bank"
 import { Branch } from "./classes/branch"
 import { Customer } from "./classes/customer"
 
-
 const arizonaBank = new Bank("Arizona")
 const stateBank = new Bank("State")
 const westBranch = new Branch("West Branch")
