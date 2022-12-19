@@ -33,7 +33,7 @@ export class Customer {
     }
 
     addTransactions = (amount: number): boolean => {
-        if (amount > 0) {
+        if (this.getBalance() >= amount && amount > 0) {
             let newTransaction: Transaction ={
                 amount,
                 date: new Date()

@@ -18,7 +18,7 @@ export class Branch {
     }
 
     addCustomer = (customer: Customer): boolean => {
-        if (this.customers.includes(customer)) {
+        if (this.customers.some(data => data.getName === customer.getName)) {
             return false
         } else {
             this.customers = [...this.customers, customer]

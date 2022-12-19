@@ -1,4 +1,4 @@
-import { CustomerList } from "../types/common"
+import { Customer as CustomerDataType } from "../types/common"
 import { Branch } from "./branch"
 import { Customer } from "./customer"
 
@@ -12,7 +12,7 @@ export class Bank {
     }
 
     addBranch = (branchName: Branch): boolean => {
-        if(this.branches.includes(branchName)){
+        if(this.checkBranch(branchName)){
             return false
         } else{
             this.branches = [...this.branches,branchName]
@@ -29,7 +29,7 @@ export class Bank {
     }
 
     findBranchByName = (branchName: string): string | null => {
-        let result: null | string = ''
+        let result: null | string = null
         this.branches.map((branch: Branch) => {
             let name = branch.getName
             if(name.toLowerCase().includes(branchName) || name === branchName) {
@@ -41,10 +41,10 @@ export class Bank {
     }
 
     checkBranch = (branchName: Branch): boolean => {
-        return this.branches.includes(branchName)
+        return this.branches.some(branch => branch.getName === branchName.getName)
     }
 
-    listCustomers = (branchName: Branch, getTransactionInfo: boolean): boolean | CustomerList[]  => {
+    listCustomers = (branchName: Branch, getTransactionInfo: boolean): boolean | CustomerDataType[]  => {
         if(this.checkBranch(branchName)) {
             if(!getTransactionInfo){
                 return true

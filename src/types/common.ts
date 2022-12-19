@@ -3,7 +3,7 @@ export interface Entity{
     id: number
 }
 
-export interface CustomerList {
+export interface Customer {
     name: string,
     id: string,
     transaction: string
